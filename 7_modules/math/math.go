@@ -1,5 +1,5 @@
 package math
 
-func Add[T int | float64](a, b int) int {
+func Add[T int | float64](a, b T) T {
 	return a + b
 }

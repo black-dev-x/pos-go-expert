@@ -1,6 +1,8 @@
 package main
 
+import "black.dev.x/math"
+
 func main() {
-	result := Add(1, 2)
+	result := math.Add(1, 2)
 	println(result)
 }
