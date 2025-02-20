@@ -33,6 +33,8 @@ func main() {
 		panic(error)
 	}
 	println(product.Name)
+	product.Name = "Product 3"
+	updateProduct(db, product)
 	products, error := selectProducts(db)
 	if error != nil {
 		panic(error)
