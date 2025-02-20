@@ -33,7 +33,35 @@ func main() {
 		panic(error)
 	}
 	println(product.Name)
+	products, error := selectProducts(db)
+	if error != nil {
+		panic(error)
+	}
+	for _, product := range products {
+		println(product.Name)
+	}
 	defer db.Close()
+}
+
+func selectProducts(db *sql.DB) ([]*Product, error) {
+	rows, err := db.Query("SELECT id, name, price FROM products")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	products := make([]*Product, 0)
+	for rows.Next() {
+		product := new(Product)
+		err := rows.Scan(&product.ID, &product.Name, &product.Price)
+		if err != nil {
+			return nil, err
+		}
+		products = append(products, product)
+	}
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+	return products, nil
 }
 
 func selectProduct(db *sql.DB, id string) (*Product, error) {
