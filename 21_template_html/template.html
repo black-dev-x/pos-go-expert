@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Template</title>
+</head>
+<body>
+    <h1>Courses</h1>
+    <table>
+      <thead>
+        <tr>
+            <th>Course</th>
+            <th>Hours</th>
+            <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range . }}
+        <tr>
+            <td>{{ .Name }}</td>
+            <td>{{ .Hours }}</td>
+            <td>{{ .Price }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+</body>
+</html>
