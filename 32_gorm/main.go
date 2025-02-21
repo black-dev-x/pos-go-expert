@@ -97,7 +97,9 @@ func main() {
 	}
 
 	categories := []Category{}
-	db.Model(&Category{}).Preload("Products").Find(&categories)
+	// db.Model(&Category{}).Preload("Products").Preload("Products.SerialNumber").Find(&categories)
+	// it preload both products and serial number inside each product
+	db.Model(&Category{}).Preload("Products.SerialNumber").Find(&categories)
 	println("All categories")
 	for _, category := range categories {
 		println(category.Name)
