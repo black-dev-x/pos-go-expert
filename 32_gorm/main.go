@@ -32,5 +32,19 @@ func main() {
 	for _, product := range products {
 		println(product.Name)
 	}
+	// limit
+	db.Limit(2).Find(&products)
+
+	// offset por pagination
+	db.Limit(2).Offset(1).Find(&products)
+
+	// where
+	db.Where("price > ?", 100).Find(&products)
+
+	// like
+	likeProducts := []Product{}
+	db.Where("name LIKE ?", "%Hel%").Find(&likeProducts)
+	println("Like")
+	println(likeProducts[0].Name)
 
 }
