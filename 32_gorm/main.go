@@ -47,4 +47,13 @@ func main() {
 	println("Like")
 	println(likeProducts[0].Name)
 
+	p := Product{}
+	db.First(&p, 1)
+	p.Name = "New Hell"
+	db.Save(&p)
+
+	potato := Product{}
+	db.First(&potato, 1)
+	db.Delete(&potato)
+
 }
