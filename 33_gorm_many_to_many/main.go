@@ -3,6 +3,7 @@ package main
 import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 type Product struct {
@@ -44,4 +45,12 @@ func main() {
 			println(" - ", category.Name)
 		}
 	}
+	tx := db.Begin()
+	category := Category{}
+	// pessimistic lock
+	tx.Debug().Clauses(clause.Locking{Strength: "UPDATE"}).First(&category, "name = ?", "Kitchen")
+	category.Name = "Hell Kitchen"
+	tx.Debug().Save(&category)
+	tx.Commit()
+
 }
