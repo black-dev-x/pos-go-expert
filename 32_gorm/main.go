@@ -23,8 +23,9 @@ type SerialNumber struct {
 
 // belongs to
 type Category struct {
-	ID   uint `gorm:"primarykey"`
-	Name string
+	ID       uint `gorm:"primarykey"`
+	Name     string
+	Products []Product
 	gorm.Model
 }
 
@@ -93,6 +94,16 @@ func main() {
 		println(product.Name)
 		println(product.Category.Name)
 		println(product.SerialNumber.Number)
+	}
+
+	categories := []Category{}
+	db.Model(&Category{}).Preload("Products").Find(&categories)
+	println("All categories")
+	for _, category := range categories {
+		println(category.Name)
+		for _, product := range category.Products {
+			println(product.Name)
+		}
 	}
 
 }
