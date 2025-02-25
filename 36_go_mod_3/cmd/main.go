@@ -9,6 +9,6 @@ func main() {
 	println(uuid.New().String())
 	m := math.Math{A: 1, B: 2}
 	result := m.Add()
-	println(result)5
+	println(result)
 	println("Hello, World!")
 }
