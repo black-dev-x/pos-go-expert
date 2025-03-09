@@ -1,9 +1,8 @@
 package tax
 
 import (
-	"testing"
-
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestCalculateTax(t *testing.T) {
