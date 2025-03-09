@@ -31,4 +31,6 @@ func TestCalculateTaxWithMockAnything(t *testing.T) {
 	error = CalculateTaxAndSave(2000.0, repository)
 	assert.Nil(t, error)
 	repository.AssertExpectations(t)
+	repository.AssertCalled(t, "SaveTax", 10.0)
+	repository.AssertNumberOfCalls(t, "SaveTax", 3)
 }
