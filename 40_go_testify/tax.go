@@ -1,18 +1,21 @@
 package tax
 
-import "time"
+import (
+	"errors"
+	"time"
+)
 
-func CalculateTax(amount float64) float64 {
+func CalculateTax(amount float64) (float64, error) {
 	if amount <= 0 {
-		return 0
+		return 0, errors.New("amount should be greater than 0")
 	}
 	if amount < 1000 {
-		return 5
+		return 5, nil
 	}
 	if amount < 20000 {
-		return 10
+		return 10, nil
 	}
-	return 20
+	return 20, nil
 }
 
 func CalculateTax2(amount float64) float64 {
